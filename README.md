@@ -1,3 +1,15 @@
+# How to
+
+```
+# Use at least ruby 1.9.2
+ruby -v
+# ruby 1.9.2p290 (2011-07-09 revision 32553) [x86_64-darwin11.3.0]
+gem install bundler
+bundle install
+bin/tkn examples/connect_design_patterns.rb
+```
+
+
 # Terminal Keynote
 
 ![Terminal Keynote Cover](https://raw.github.com/fxn/tkn/master/screenshots/terminal-keynote-cover.png)
