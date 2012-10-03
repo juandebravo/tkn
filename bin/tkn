@@ -106,7 +106,7 @@ end
 
 # Renders Ruby source code.
 def render_code(code)
-  render_block(Pygments.highlight(code, formatter: 'terminal256', lexer: 'ruby', options: {style: 'bw'}))
+  render_block(Pygments.highlight(code, formatter: 'terminal', lexer: 'python', options: {style: 'bw'}))
 end
 
 # Centers the whole content as a block. That is, the format within the content
@@ -159,7 +159,7 @@ loop do
   n = [[0, n].max, $slides.length - 1].min
   render($slides[n]).each_char do |c|
     print c
-    sleep 0.002 # old-school touch: running cursor
+    sleep 0.0005 # old-school touch: running cursor
   end
 
   case read_command
