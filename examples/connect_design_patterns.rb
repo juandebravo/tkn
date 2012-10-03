@@ -6,6 +6,8 @@ slide <<-EOS, :center
     Iván -DrSlump- Montes
     Jacob Cañadas
     Juan de Bravo
+    Francisco Javier Juan
+    Gustavo García
 
     TUGo 2012
 EOS
@@ -15,6 +17,8 @@ slide <<-EOS, :block
     - One guy with depth knowledge in \033[92mPHP\033[0m & \033[92mJavascript\033[0m
     - One guy with depth knowledge in \033[92mPython\033[0m
     - One guy with depth knowledge in \033[92mRuby\033[0m
+    - One guy with depth knowledge in \033[92mJava\033[0m
+    - One guy with depth knowledge in \033[92meverything\033[0m
     - We love software
     - \033[91mWe hug the tech plan\033[0m
     - One language to rule them all
