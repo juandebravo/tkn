@@ -451,6 +451,12 @@ section "Metaprogramming" do
 
     slide <<-EOS, :code
       TODO
+
+      Note: Use with extreme care. Frameworks can abuse it because they
+      offer documentation, are extensively tested and have a large community
+      of developers to help. Being able to easily follow the execution logic
+      just by looking at the source code is an extremely valuable debugging
+      technique that will save you hours and hair :)
     EOS
 
     slide <<-EOS, :block
