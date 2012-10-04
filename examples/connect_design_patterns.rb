@@ -170,6 +170,17 @@ section "Patterns" do
         return user
     EOS
 
+    slide <<-EOS, :block
+        * Transaction like processes can be easily modelled with it
+        * Properly encapsulates the code
+        * Clean separation of business and integration concerns
+        * Easy to modify and refactor
+        ----
+        Here comes the runner!
+        * Note that it is completely agnostic of our business logic
+        * Note also that it's in need of a refactor to clean up the implementation
+    EOS
+
     slide <<-EOS, :code
         class StepList(object):
             def __init__(self, obj):
