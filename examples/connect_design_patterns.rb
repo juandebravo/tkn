@@ -430,6 +430,12 @@ section "Patterns" do
 
             return len(tokens)
     EOS
+
+    slide <<-EOS, :block
+        A great result of applying the Single Responsability Principle is that the
+        resulting code will make very obvious what the different concerns are and
+        what cross-cutting concerns should be refactored out into a common library.
+    EOS    
     
 end
 
