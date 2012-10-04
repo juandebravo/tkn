@@ -243,6 +243,11 @@ section "Patterns" do
 
     slide <<-EOS, :block
         * Twisted: create an HTTP server
+
+        ──────────── 
+
+        - Twisted has a steep learning curve
+        - Should be used only when actually needed
     EOS
 
     slide <<-EOS, :code
@@ -272,6 +277,13 @@ section "Patterns" do
 
     slide <<-EOS, :block
         * Gevent: patch at socket level
+
+        ────────────         
+
+        - A joy to use :)
+        - You still need to think how your application is going to handle its scalability
+          and its concurrency model, you just don't have to bother with the low level
+          details! 
     EOS
 
     slide <<-EOS, :code
