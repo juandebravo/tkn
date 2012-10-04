@@ -525,6 +525,16 @@ section "Django good practices" do
         * Do not use models native methods in controllers
         * Create resource representation outside controller. Pending how to inject in DjangoRestFramework
     EOS
+
+    slide <<-EOS, :block
+        * Some tips on Django:
+            It's a no-dependencies framework. Have its source code at hand to easily grep thru it when 
+            in trouble.
+
+            Follow its best practices unless you have a good reason to do otherwise. It's an application
+            framework and the different components are tied, don't think of it as a components library
+            because you'll suffer!
+    EOS
 end
 
 section "That's all, thanks dudes!" do
