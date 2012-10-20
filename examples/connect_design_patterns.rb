@@ -27,7 +27,6 @@ EOS
 
 section "Connect code structure review" do
     slide <<-EOS, :block
-        - https://pdihub.hi.inet/connect/connect-backend
         - bin
         - \033[91mconnect_backend\033[0m
             - call_control
@@ -155,7 +154,7 @@ section "Patterns" do
     slide <<-EOS, :code
         steps_list = steps.StepList(user)
 
-        steps_list.add(steps.RegisterJajahUser(extras=metadata))
+        steps_list.add(steps.RegisterUser(extras=metadata))
                   .add(steps.StartCallNotification())
                   .add(steps.StartSmsNotification())
                   .add(steps.RegisterObUser())
@@ -342,12 +341,11 @@ section "Patterns" do
                      {"name": "push_token",
                       "value": "foo-bar"}
              ],
-             "state": {"status": 1, "URI": "user@voip.gconnect.com; blablabla"},
+             "state": {"status": 0},
             }
     EOS
 
     slide <<-EOS, :code
-        # Pair Jajah naming - Connect naming
         ATTRIBUTES_CASTING = (('+sip.instance', 'device_id'),
                             ('push_token', 'push_token'),
                             ('label', 'label'))
@@ -366,7 +364,6 @@ section "Patterns" do
             custom_properties = map(convert, custom_properties)
             values.extend(custom_properties)
 
-            # convert from Jajah attributes to connect external attributes
             nice_device = dict((v, DevicesClient.get_value_from_device_ids(values, k))
                             for (k, v) in cls.ATTRIBUTES_CASTING)
 
