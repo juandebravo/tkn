@@ -22,7 +22,7 @@ def block(content)
   slide(content, :block)
 end
 
-def code(content, lexer=:ruby)
+def code(content, lexer=:python)
   slide(content, :code, lexer)
 end
 
@@ -163,7 +163,7 @@ end
 
 # Renders source code.
 def render_code(code, lexer)
-  render_block(Pygments.highlight(code, formatter: 'terminal256', lexer: lexer, options: {style: 'bw'}) + "\n")
+  render_block(Pygments.highlight(code, formatter: 'terminal256', lexer: lexer, options: {style: 'native'}) + "\n")
 end
 
 # Centers the whole content as a block. That is, the format within the content
