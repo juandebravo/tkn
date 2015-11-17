@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 center <<-EOS
-  \e[1mThe \e[92myield\e[0m\e[1m statement in python\e[0m
+  \e[1mThe \e[92myield\e[0m\e[1m statement/expression in python\e[0m
 
   Juan de Bravo
 
@@ -26,6 +26,8 @@ section "\e[92mGenerators\e[0m" do
   it left off."
 
   \e[1mhttps://www.python.org/dev/peps/pep-0255/\e[0m
+
+  Added in python 2.2
   EOS
 
   block <<-EOS
@@ -85,6 +87,8 @@ section "\e[92mCoroutines\e[0m" do
     - can \e[1msave control state\e[0m between entry points calls.
 
     https://www.python.org/dev/peps/pep-0342/
+
+    Added in python 2.5
   EOS
 
   code <<-EOS
@@ -97,25 +101,98 @@ section "\e[92mCoroutines\e[0m" do
 
         while temp != '':
             # Wait for a new input (suspend the coroutine)...
+            # We could send a value as well
             temp = yield
             # ... and save control state (resume the execution)
             _str += temp
             print _str
 
-        # Instantiate a new coroutine...
-        a = concatenate('foo')
+    # Instantiate a new coroutine...
+    a = concatenate('foo')
 
-        # ... and "move" the coroutine state till the `yield` keyword
-        a.next()
+    # ... and "move" the coroutine state till the `yield` keyword
+    a.next()
+    # similar to a.send(None)
 
-        while True:
-            try:
-                # Send the raw input from the user to the coroutine...
-                a.send(raw_input())
-            except StopIteration:
-                # ... and capture the coroutine end by means
-                # of StopIteration exception
-                break
+    while True:
+        try:
+            # Send the raw input from the user to the coroutine...
+            a.send(raw_input())
+        except StopIteration:
+            # ... and capture the coroutine end by means
+            # of StopIteration exception
+            break
+  EOS
+
+  block <<-EOS
+    \e[91mWashington\e[0m\n
+    Coroutines execution via a chainable API.
+
+    Washington is a simple library implemented with the only
+    intention of having fun while learning about how to use coroutines in python.
+
+    - https://github.com/juandebravo/washington
+
+    \e[92mMust read article about functional programming in python!\e[0m
+
+    http://maryrosecook.com/blog/post/a-practical-introduction-to-functional-programming
+  EOS
+
+  code <<-EOS
+    # Imperative way
+    for u in open('file.txt'):
+        d = dict(zip(('alias', 'email', 'location'), u.split('|', 2)))
+        patc = re.compile(r'^[^u]+u')
+        if patc.search(d['alias']):
+            os.sys.stdout.write(d['alias'])  # Python 2/3 compliance
+            with open('result2.log', 'a') as f:
+                 f.write(d['alias'])
+
+    # Washington
+    # Coroutines using a chainable API
+    filter_users_chain = (pipeline(open('file.txt')).
+                          create_dict(('alias', 'email', 'location')).
+                          filter_by('alias', r'^[^u]+u').
+                          pluck('alias').
+                          dumper(os.sys.stdout.write).
+                          print_name('result.log'))
+
+    filter_users_chain()
+  EOS
+end
+
+section "\e[92mDelegating to a Subgenerator\e[0m" do
+  block <<-EOS
+    Syntax for \e[91ma generator to delegate\e[0m part of its operations
+    to another generator.
+
+    https://www.python.org/dev/peps/pep-0380/
+
+    Added in python 3.3
+  EOS
+
+  code <<-EOS
+      #!/usr/bin/env python3
+
+      def characters_range(initial, end):
+          for i in range(initial, end):
+              yield chr(i)
+
+
+      def numbers_alphabet():
+          # numbers
+          yield from characters_range(48, 58)
+
+          # uppercase
+          yield from characters_range(65, 91)
+
+          # lowercase
+          yield from characters_range(97, 123)
+
+
+      if __name__ == '__main__':
+          for x in numbers_alphabet():
+              print(x)
   EOS
 end
 
