@@ -13,7 +13,7 @@ EOS
 block <<-EOS
   - Generators (when god thought preventing state outside the function was a good idea)
   - Coroutines (when god thought getting a new value to resume a generator was a good idea)
-  -
+  - Multiple generators
   - async.io
 EOS
 
@@ -42,9 +42,9 @@ section "\e[92mGenerators\e[0m" do
   - return statement is executed
   - StopIteration exception is raised
   - end of generator function
+
+  Important: \e[1mA generator can be consumed only once\e[0m
   EOS
-
-
 
   code <<-EOS
     def countdown(n):
@@ -71,6 +71,52 @@ section "\e[92mGenerators\e[0m" do
     0
   EOS
 
+end
+
+section "\e[92mCoroutines\e[0m" do
+  block <<-EOS
+    Coroutines are \e[91mspecial functions\e[0m that differ from usual ones in four aspects:
+
+    - exposes \e[1mseveral entry points\e[0m to a function.
+      An entry point is the line of code inside the function where it will take
+      control over the execution.
+    - can receive a \e[1mdifferent input in every entry point\e[0m while executing the coroutine.
+    - can return \e[1mdifferent outputs\e[0m as response to the different entry points.
+    - can \e[1msave control state\e[0m between entry points calls.
+
+    https://www.python.org/dev/peps/pep-0342/
+  EOS
+
+  code <<-EOS
+    def concatenate(_str):
+        """
+        Coroutine that receives a new string in every
+        iteration and concatenates to the original one
+        """
+        temp = None
+
+        while temp != '':
+            # Wait for a new input (suspend the coroutine)...
+            temp = yield
+            # ... and save control state (resume the execution)
+            _str += temp
+            print _str
+
+        # Instantiate a new coroutine...
+        a = concatenate('foo')
+
+        # ... and "move" the coroutine state till the `yield` keyword
+        a.next()
+
+        while True:
+            try:
+                # Send the raw input from the user to the coroutine...
+                a.send(raw_input())
+            except StopIteration:
+                # ... and capture the coroutine end by means
+                # of StopIteration exception
+                break
+  EOS
 end
 
 section "That's all, thanks dudes!" do
