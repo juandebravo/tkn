@@ -196,14 +196,50 @@ section "\e[92mDelegating to a Subgenerator\e[0m" do
   EOS
 end
 
-section "\e[92mAsync await\e[0m" do
+section "\e[92mAsynchronous IO\e[0m" do
   block <<-EOS
-    Making \e[91mwriting explicitly asynchronous\e[0m,
-    concurrent Python code easier and more Pythonic.
 
-    https://www.python.org/dev/peps/pep-0492/
+    A \e[91mpluggable event loop\e[0m, transport and protocol abstractions
+    similar to those in Twisted,
+    and a higher-level scheduler based on \e[1myield from\e[0m.
 
-    Added in python 3.5
+    https://www.python.org/dev/peps/pep-3156/
+
+    Previous versions under the name Tulip (https://github.com/python/asyncio)
+
+    Added in python 3.4
+  EOS
+
+  block <<-EOS
+    \e[92mKey concepts\e[0m\n
+    - \e[1mInteroperability\e[0m: frameworks to build an adapter/proxy
+    - \e[1mTransports\e[0m (TCP, SSL, Unix pipes, etc)
+    - \e[1mProtocol\e[0m (HTTP, SMTP, etc)
+    - \e[1mEvent loop management\e[0m (start/stop/close, callbacks,
+      thread interactions, etc)
+  EOS
+
+  code <<-EOS
+    import asyncio
+    import asyncio_redis
+
+
+    @asyncio.coroutine
+    def example():
+        # Create Redis connection
+        connection = yield from asyncio_redis.Connection.create(host='127.0.0.1', port=6379)
+
+        # Set a key
+        yield from connection.set('my_key', 'my_value')
+
+        # When finished, close the connection.
+        connection.close()
+
+    if __name__ == '__main__':
+        loop = asyncio.get_event_loop()
+        loop.run_until_complete(example())
+        loop.close()
+
   EOS
 end
 
