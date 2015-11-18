@@ -196,5 +196,17 @@ section "\e[92mDelegating to a Subgenerator\e[0m" do
   EOS
 end
 
+section "\e[92mAsync await\e[0m" do
+  block <<-EOS
+    Making \e[91mwriting explicitly asynchronous\e[0m,
+    concurrent Python code easier and more Pythonic.
+
+    https://www.python.org/dev/peps/pep-0492/
+
+    Added in python 3.5
+  EOS
+end
+
+
 section "That's all, thanks dudes!" do
 end
