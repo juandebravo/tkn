@@ -11,9 +11,9 @@ center <<-EOS
 EOS
 
 block <<-EOS
-  - Generators (when god thought preventing state outside the function was a good idea)
-  - Coroutines (when god thought getting a new value to resume a generator was a good idea)
-  - Multiple generators
+  - Generators
+  - Coroutines
+  - Subgenerators
   - async.io
 EOS
 
