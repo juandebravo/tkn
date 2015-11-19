@@ -4,6 +4,7 @@ center <<-EOS
   \e[1mThe \e[92myield\e[0m\e[1m statement/expression in python\e[0m
 
   Juan de Bravo
+  @juandebravo
 
   BIGeeklies
   Telefonica I+D
